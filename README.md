@@ -12,6 +12,10 @@
 
 </div>
 
+<p align="center">
+  <img src="assets/model.png" alt="SEGUE Framework" width="90%">
+</p>
+
 ---
 
 ## 📋 简介
@@ -21,27 +25,6 @@
 核心思路：
 - 🎯 **Stage 1 (Grounding Pretrain)**: Grounding DINO + Prompt Refiner (LoRA) → 精修 bbox 与关键点 → SAM2
 - 🧠 **Reasoning**: Qwen2.5-VL → 链式思考推理 → [SEG] 几何提示 → 迭代验证修正
-
-## 🏗️ 架构
-
-```
-┌──────────────────────────────────────────────────────────┐
-│                    SEGUE Framework                        │
-│                                                           │
-│  ┌─────────────┐    ┌──────────────┐    ┌─────────────┐  │
-│  │ Grounding    │ →  │ Prompt       │ →  │ SAM2        │  │
-│  │ DINO (LoRA)  │    │ Refiner      │    │ (frozen)    │  │
-│  │ text→bbox    │    │ bbox→keypts  │    │ mask decode │  │
-│  └─────────────┘    └──────────────┘    └─────────────┘  │
-│                          ↕                                │
-│                    L_geom + L_align                       │
-├──────────────────────────────────────────────────────────┤
-│  ┌──────────────────────────────────────────────────┐    │
-│  │ Qwen2.5-VL → Chain-of-Thought → [SEG] prompts    │    │
-│  │ → SAM2 → Verify → Iterate (if below threshold)   │    │
-│  └──────────────────────────────────────────────────┘    │
-└──────────────────────────────────────────────────────────┘
-```
 
 ## ✨ 核心模块
 
