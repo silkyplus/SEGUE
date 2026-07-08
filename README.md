@@ -23,7 +23,7 @@
 **SEGUE** 是一个多阶段开放词汇分割框架，通过语义引导的渐进式优化，将视觉语言模型的推理能力与基础模型的精确分割能力深度融合。
 
 核心思路：
-- 🎯 **Stage 1 (Grounding Pretrain)**: Grounding DINO + Prompt Refiner (LoRA) → 精修 bbox 与关键点 → SAM2
+- 🎯 **Stage 1 (Grounding Pretrain)**: Grounding DINO + Prompt Refiner → 精修 bbox 与关键点 → SAM2
 - 🧠 **Reasoning**: Qwen2.5-VL → 链式思考推理 → [SEG] 几何提示 → 迭代验证修正
 
 ## ✨ 核心模块
@@ -32,7 +32,7 @@
 
 | 组件 | 说明 |
 |------|------|
-| **Grounding DINO** | Swin-T backbone (frozen) + LoRA on decoder → text-conditioned bbox |
+| **Grounding DINO** | Swin-T backbone (frozen) → text-conditioned bbox |
 | **Prompt Refiner** | RoI Align + MLP → refined bbox + keypoints (2 per object) |
 | **SAM2** | Frozen, receives refined prompts → generates segmentation masks |
 | **Loss** | L_geom (L1 + GIoU + Point L2) + L_align (Dice + BCE) |
@@ -126,7 +126,6 @@ python evaluate_miou.py
 | 语义 Grounding | Grounding DINO (Swin-T + BERT) |
 | 几何分割 | SAM2.1 (Hiera-B+) |
 | 推理引擎 | Qwen2.5-VL-3B-Instruct |
-| 参数高效微调 | LoRA (r=16, α=32) |
 | 损失函数 | L1 + GIoU + Point L2 + Dice + BCE |
 | 消融基线 | DeepLabV3+, U-Net, FPN |
 
