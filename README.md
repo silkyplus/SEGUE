@@ -134,6 +134,6 @@ python evaluate_miou.py
 
 ## 📄 License
 
-MIT
+本项目代码遵循 MIT 协议开源。
 
-> 联合实验室合作项目。SEGUE — 语义引导的多阶段开放词汇分割框架，融合 Grounding DINO + SAM2 + LVLM。
+> 🚧 **Work in Progress** — 框架开发已完成，完整实验正在进行中，详细实验结果将在后续版本中陆续发布。相关论文拟投递期刊，届时将同步更新基准对比与消融分析。Stay tuned.
